@@ -22,7 +22,7 @@ def selecionar_arquivo_2():
 def comparar_arquivos():
     if bm and drake:
         try:
-            lista_plat = ['PPG1', 'PCP-2', 'PCP-1/3', 'PVM1', 'PVM3', 'FSO']
+            lista_plat = ['PPG1', 'PCP-2', 'PCP-1/3', 'PVM1', 'PVM3', 'FSO', 'WORKOVER']
             df = pd.read_excel(drake)
             df_final = functions.comparar(lista_plat, df, bm)
 
@@ -121,7 +121,7 @@ def botao_gerar():
                                'Data de Término do Evento': 'Data_fin', 'Descrição do Evento': 'Evento',
                                'Uop do Evento': 'Uop', 'Quantidade de Dias no Período': 'Dias'}, inplace=True)
             df.query(
-                "Uop == 'PPG1' or Uop == 'PCP-2' or Uop == 'PCP-1/3' or Uop == 'PVM1' or Uop == 'PVM3' or Uop == 'FSO'",
+                "Uop == 'PPG1' or Uop == 'PCP-2' or Uop == 'PCP-1/3' or Uop == 'PVM1' or Uop == 'PVM3' or Uop == 'FSO' or Uop == 'PCP-1/3 - WORKOVER' or Uop == 'PVM-1 - WORKOVER' or Uop == 'PCP-2 - WORKOVER' or Uop == 'PPG1 - WORKOVER'",
                 inplace=True)
             df.query("Evento != 'FOLGA'", inplace=True)
             df.query("Evento != 'RESERVA'", inplace=True)
@@ -132,7 +132,7 @@ def botao_gerar():
             df.drop(['Situacao'], inplace=True, axis=1)
             df = df.reset_index(drop=True)
 
-            lista_plat = ['PPG1', 'PCP-2', 'PCP-1/3', 'PVM1', 'PVM3', 'FSO']
+            lista_plat = ['PPG1', 'PCP-2', 'PCP-1/3', 'PVM1', 'PVM3', 'FSO', 'PCP-1/3 - WORKOVER', 'PVM-1 - WORKOVER', 'PCP-2 - WORKOVER', 'PPG1 - WORKOVER']
 
             df_final = functions.gerar_relatorio(lista_plat, df)
 
